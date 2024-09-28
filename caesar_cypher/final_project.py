@@ -1,15 +1,20 @@
 import art
+# logo
 from art import  logo
 print(logo)
+# list of alphabets
 alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
 
-
+# function for encrypt or decrypt
 def caesar(original_text, shift_amount, encode_or_decode):
     output_text = ""
+    # ask the user to encrypt or decrypt
     if encode_or_decode == "decode":
         shift_amount *= -1
+    # encrypt and decrypt logic
     for letter in original_text:
+        # if letter not in alphabet
         if letter not in alphabet:
             output_text += letter
         else:
@@ -18,7 +23,7 @@ def caesar(original_text, shift_amount, encode_or_decode):
             output_text += alphabet[shifted_position]
     print(f"Here is the {encode_or_decode}d result: {output_text}")
 
-
+# logic for restart the game 
 should_continue = True
 while should_continue:
     direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n").lower()
