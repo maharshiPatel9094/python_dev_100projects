@@ -30,3 +30,15 @@ screen.exitonclick()
 # functions that return other functions as output
 # functions that do both
 # functions that take other functions as arguments and return other functions as output
+
+
+
+# turtle co-ordinate system
+# x axis is horizontal and y axis is vertical
+# origin is at the center of the screen
+# positive x is to the right of the origin
+# positive y is above the origin
+# negative x is to the left of the origin
+# negative y is below the origin
+# if h = 400 -> 200 0 -200
+# if w = 500 -> 250 0 -250
