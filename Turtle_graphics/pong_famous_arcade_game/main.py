@@ -1,6 +1,7 @@
-from turtle import Turtle,Screen
+from turtle import Screen
 from paddle import Paddle
-
+from ball import Ball
+import time
 # screen setup 
 screen = Screen()
 screen.title("PONG: The Famous Arcade Game")
@@ -13,6 +14,7 @@ screen.tracer(0)
 # paddle
 r_paddle = Paddle((350,0))
 l_paddle =  Paddle((-350,0))
+ball = Ball()
      
         
 # keybiard settings
@@ -25,9 +27,12 @@ screen.onkey(l_paddle.move_down,"s")
 # main code game
 game_on = True
 while game_on:
+    # make the ball move slow
+    time.sleep(0.1)
     # update manually
     # when u use tracer u have to manually update the screen
     screen.update()
+    ball.move()
 
 # screen exxit
 screen.exitonclick()
