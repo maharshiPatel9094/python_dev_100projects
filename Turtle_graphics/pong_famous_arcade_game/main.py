@@ -1,6 +1,7 @@
 from turtle import Screen
 from paddle import Paddle
 from ball import Ball
+from scoreboard import Scoreboard
 import time
 # screen setup 
 screen = Screen()
@@ -15,7 +16,7 @@ screen.tracer(0)
 r_paddle = Paddle((350,0))
 l_paddle =  Paddle((-350,0))
 ball = Ball()
-     
+scoreboard = Scoreboard()
         
 # keybiard settings
 screen.listen()
@@ -28,7 +29,7 @@ screen.onkey(l_paddle.move_down,"s")
 game_on = True
 while game_on:
     # make the ball move slow
-    time.sleep(0.1)
+    time.sleep(ball.ball_speed)
     # update manually
     # when u use tracer u have to manually update the screen
     screen.update()
@@ -41,6 +42,15 @@ while game_on:
     # detect collision with paddle
     if ball.distance(r_paddle) < 50 and ball.xcor() > 320 or ball.distance(l_paddle) < 50 and ball.xcor() < -320:
         ball.bounce_x()
-
+        
+    # detect if r paddle miss ball 
+    if ball.xcor() > 380:
+        ball.reset_ball()
+        scoreboard.l_point()
+        
+    # detect if l paddle miss ball
+    if ball.xcor() < -380:
+        ball.reset_ball()
+        scoreboard.r_point()
 # screen exxit
 screen.exitonclick()

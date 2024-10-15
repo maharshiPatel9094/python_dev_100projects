@@ -6,21 +6,31 @@ class Ball(Turtle):
         self.shape("circle")
         self.color("white")
         self.penup()
-        self.goto(0, 0)
         self.x_move = 10 
         self.y_move = 10
+        self.ball_speed = 0.1
         
     def move(self):
+        '''Move the ball in x,y'''
         new_x = self.xcor() + self.x_move
         new_y = self.ycor() + self.y_move
         self.goto(new_x,new_y)  
         
     def bounce_y(self):
+        '''reverse the direction when hit the wall'''
         # reverse y direction
         self.y_move *= -1
         
     def bounce_x(self):
+        '''reverse the direction when hit the paddle'''
         # reverse x direction
         self.x_move *= -1
+        self.ball_speed *= 0.9
         
+    def reset_ball(self):
+        '''reset the ball origin and make ball direction reverse who missed the ball'''
+        self.goto(0,0)
+        self.ball_speed = 0.1
+        # when ball missed by any paddle reverse the direction of ball
+        self.bounce_x()
         
