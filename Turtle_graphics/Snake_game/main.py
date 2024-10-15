@@ -1,7 +1,8 @@
 from turtle import Screen
 from snake import Snake
+from food import Food
+from scoreboard import Scoreboard
 import time
-# object
 
 # -----------------------step-1 create a snake body
 # segment_1 = Turtle("square")
@@ -24,6 +25,11 @@ screen.tracer(0)
 
 # snake object
 snake = Snake()
+# food object
+food = Food()
+# scoreboard object
+scoreboard = Scoreboard()
+
 
 # snake control
 screen.listen()
@@ -43,7 +49,23 @@ while game_on:
     # for snake to move smoothly we have to move segments in reverse order
     snake.move_snake()
     
+    # detect collision with food
+    if snake.head.distance(food) < 15:
+        # refresh method
+        food.refresh()
+        snake.extend_snake()
+        scoreboard.increase_score()
     
-    
+    # detect collision with wall
+    if snake.head.xcor() > 280 or snake.head.xcor() < -280 or snake.head.ycor() > 280 or snake.head.ycor() < -280:
+        game_on = False
+        scoreboard.game_over()
+        
+    # detect the collision with tail
+    for segment in snake.segments[1:]:
+        if snake.head.distance(segment) < 10:
+            game_on = False
+
+        
     
 screen.exitonclick()
